@@ -1,0 +1,65 @@
+a {
+  color: #52A6FF; }
+
+a:hover {
+  color: #52A6FF; }
+
+.countLabel {
+  font-family: "Courier New", Courier, monospace;
+  color: #fff;
+  font-size: 2em;
+  font-weight: bold;
+  display: block; }
+
+.count {
+  font-family: "Courier New", Courier, monospace;
+  color: #fff;
+  font-size: 5em;
+  font-weight: bold; }
+
+.diff {
+  font-family: "Courier New", Courier, monospace;
+  color: #fff;
+  font-size: 2em;
+  font-weight: bold;
+  opacity: 0; }
+
+.diff.more {
+  color: #E38A81; }
+
+.diff.less {
+  color: #27AE60; }
+
+.diff.show {
+  opacity: 1;
+  -webkit-transition: 1s;
+  -o-transition: 1s;
+  transition: 1s; }
+
+.days {
+  font-family: "Courier New", Courier, monospace;
+  color: #fff;
+  font-size: 1em;
+  font-weight: bold;
+  opacity: 0;
+  display: block; }
+
+.days.show {
+  opacity: 1;
+  -webkit-transition: 1s;
+  -o-transition: 1s;
+  transition: 1s; }
+
+.rank {
+  font-family: "Courier New", Courier, monospace;
+  color: #fff;
+  font-size: 1em;
+  font-weight: bold;
+  opacity: 0;
+  display: block; }
+
+.rank.show {
+  opacity: 1;
+  -webkit-transition: 1s;
+  -o-transition: 1s;
+  transition: 1s; }

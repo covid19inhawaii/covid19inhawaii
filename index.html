@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>COVID-19 in Hawaii</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<header class="bg-primary pt-4 pb-4">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<h1 class="text-light">COVID-19 in <span id="stateName"></span></h1>
+					</div>
+				</div>
+			</div>
+		</header>
+		<section class="bg-dark">
+			<div class="container">
+				<div class="row pt-5 pb-5">
+					<div class="col-sm-6 text-center pt-5 pb-5">
+						<span class="countLabel">Total Cases</span>
+						<span class="count" id="cases"></span><span id="caseDiffFromPrevDay" class="diff"></span>
+						<span class = days id="caseDays"></span>
+						<span class="rank text-light" id="caseRanking"></span>
+					</div>
+					<div class="col-sm-6 text-center pt-5 pb-5">
+						<span class="countLabel">Total Deaths</span>
+						<span class="count" id="deaths"></span><span id="deathDiffFromPrevDay" class="diff"></span>
+						<span class=days id="deathDays"></span>
+						<span class="rank text-light" id="deathRanking"></span>
+					</div>
+				</div>
+				<div class="row pt-5 pb-5 text-center">
+					<div class="col">
+						<canvas id="state"></canvas>
+						<span class="update"><small id="stateUpdate" class="text-light"></small></span>
+					</div>
+				</div>
+				<div class="row pt-5 pb-5 text-center" id="countyCasesContainer">
+					<div class="col">
+						<canvas id="countyCases"></canvas>
+						<span><small id="countyCaseUpdate" class="text-light"></small></span>
+					</div>
+				</div>
+				<div class="row pt-5 pb-5 text-center" id="countyDeathsContainer">
+					<div class="col">
+						<canvas id="countyDeaths"></canvas>
+						<span><small id="countyDeathUpdate" class="text-light"></small></span>
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer class="bg-dark pt-5 pb-5">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<span class="text-light">Data from The New York Times, based on reports from state and local health agencies (<a href="https://github.com/nytimes/covid-19-data">Data Source</a>).</span>
+						<br />
+						<br />
+						<span class="text-light" id="hiDeptHealth">Data may be delayed in collection. For up-to-date information, please check <a href="https://hawaiicovid19.com/">Hawaii State Department of Health</a>.</span>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/countup@1.8.2/dist/countUp.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+		<script src="script.js"></script>
+	</body>
+</html>
