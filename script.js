@@ -287,8 +287,8 @@ document.addEventListener('DOMContentLoaded', function() {
 							{
 								label: 'Kauai',
 								data: [],
-								borderColor: 'rgba(108,52,131,0.6)',
-								backgroundColor: 'rgba(108,52,131,0.1)'
+								borderColor: 'rgba(187,143,206,0.6)',
+								backgroundColor: 'rgba(187,143,206,0.1)'
 							},
 							{
 								label: 'Maui',
@@ -316,8 +316,8 @@ document.addEventListener('DOMContentLoaded', function() {
 							{
 								label: 'Kauai',
 								data: [],
-								borderColor: 'rgba(108,52,131,0.6)',
-								backgroundColor: 'rgba(108,52,131,0.1)'
+								borderColor: 'rgba(187,143,206,0.6)',
+								backgroundColor: 'rgba(187,143,206,0.1)'
 							},
 							{
 								label: 'Maui',
