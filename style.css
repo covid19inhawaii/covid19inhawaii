@@ -6,6 +6,12 @@ a:hover {
   color: #52A6FF;
   font-weight: bold; }
 
+h2 {
+  font-family: "Courier New", Courier, monospace;
+  color: #fff;
+  font-weight: bold;
+  margin-top: 5em; }
+
 .countLabel {
   font-family: "Courier New", Courier, monospace;
   color: #fff;
@@ -37,6 +43,15 @@ a:hover {
   -webkit-transition: 1s;
   -o-transition: 1s;
   transition: 1s; }
+
+#countyCaseCounts .countLabel, #countyDeathCounts .countLabel {
+  font-size: 1.3em; }
+
+#countyCaseCounts .count, #countyDeathCounts .count {
+  font-size: 3em; }
+
+#countyCaseCounts .diff, #countyDeathCounts .diff {
+  font-size: 1.5em; }
 
 .days {
   font-family: "Courier New", Courier, monospace;

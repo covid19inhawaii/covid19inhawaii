@@ -20,35 +20,75 @@
 		<section class="bg-dark">
 			<div class="container">
 				<div class="row pt-5 pb-5">
-					<div class="col-sm-6 text-center pt-5 pb-5">
+					<div class="col-sm text-center pt-5 pb-5">
 						<span class="countLabel">Total Cases</span>
 						<span class="count" id="cases"></span><span id="caseDiffFromPrevDay" class="diff"></span>
 						<span class = days id="caseDays"></span>
 						<span class="rank text-light" id="caseRanking"></span>
 					</div>
-					<div class="col-sm-6 text-center pt-5 pb-5">
+					<div class="col-sm text-center pt-5 pb-5">
 						<span class="countLabel">Total Deaths</span>
 						<span class="count" id="deaths"></span><span id="deathDiffFromPrevDay" class="diff"></span>
 						<span class=days id="deathDays"></span>
 						<span class="rank text-light" id="deathRanking"></span>
 					</div>
 				</div>
-				<div class="row pt-5 pb-5 text-center">
+				<div class="row pb-5 text-center">
 					<div class="col">
 						<canvas id="state"></canvas>
 						<span class="update"><small id="stateUpdate" class="text-light"></small></span>
 					</div>
 				</div>
-				<div class="row pt-5 pb-5 text-center" id="countyCasesContainer">
-					<div class="col">
-						<canvas id="countyCases"></canvas>
-						<span><small id="countyCaseUpdate" class="text-light"></small></span>
+				<div id="hawaiiSpecificInfo">
+					<h2 class="text-center">County Cases</h2>
+					<div class="row pb-2" id="countyCaseCounts">
+						<div class="col-sm-6 col-md-3 text-center pt-3 pb-3">
+							<span class="countLabel">Hawaii</span>
+							<span class="count" id="countyCaseCountHawaii"></span><span id="countyCaseCountHawaiiChange" class="diff"></span>
+						</div>
+						<div class="col-sm-6 col-md-3 text-center pt-3 pb-3">
+							<span class="countLabel">Honolulu</span>
+							<span class="count" id="countyCaseCountHonolulu"></span><span id="countyCaseCountHonoluluChange" class="diff"></span>
+						</div>
+						<div class="col-sm-6 col-md-3 text-center pt-3 pb-3">
+							<span class="countLabel">Kauai</span>
+							<span class="count" id="countyCaseCountKauai"></span><span id="countyCaseCountKauaiChange" class="diff"></span>
+						</div>
+						<div class="col-sm-6 col-md-3 text-center pt-3 pb-3">
+							<span class="countLabel">Maui</span>
+							<span class="count" id="countyCaseCountMaui"></span><span id="countyCaseCountMauiChange" class="diff"></span>
+						</div>
 					</div>
-				</div>
-				<div class="row pt-5 pb-5 text-center" id="countyDeathsContainer">
-					<div class="col">
-						<canvas id="countyDeaths"></canvas>
-						<span><small id="countyDeathUpdate" class="text-light"></small></span>
+					<div class="row pb-5 text-center" id="countyCasesContainer">
+						<div class="col">
+							<canvas id="countyCases"></canvas>
+							<span><small id="countyCaseUpdate" class="text-light"></small></span>
+						</div>
+					</div>
+					<h2 class="text-center">County Deaths</h2>
+					<div class="row pb-2" id="countyDeathCounts">
+						<div class="col-sm-6 col-md-3 text-center pt-3 pb-3">
+							<span class="countLabel">Hawaii</span>
+							<span class="count" id="countyDeathCountHawaii"></span><span id="countyDeathCountHawaiiChange" class="diff"></span>
+						</div>
+						<div class="col-sm-6 col-md-3 text-center pt-3 pb-3">
+							<span class="countLabel">Honolulu</span>
+							<span class="count" id="countyDeathCountHonolulu"></span><span id="countyDeathCountHonoluluChange" class="diff"></span>
+						</div>
+						<div class="col-sm-6 col-md-3 text-center pt-3 pb-3">
+							<span class="countLabel">Kauai</span>
+							<span class="count" id="countyDeathCountKauai"></span><span id="countyDeathCountKauaiChange" class="diff"></span>
+						</div>
+						<div class="col-sm-6 col-md-3 text-center pt-3 pb-3">
+							<span class="countLabel">Maui</span>
+							<span class="count" id="countyDeathCountMaui"></span><span id="countyDeathCountMauiChange" class="diff"></span>
+						</div>
+					</div>
+					<div class="row pb-5 text-center" id="countyDeathsContainer">
+						<div class="col">
+							<canvas id="countyDeaths"></canvas>
+							<span><small id="countyDeathUpdate" class="text-light"></small></span>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -58,9 +98,11 @@
 				<div class="row">
 					<div class="col">
 						<span class="text-light">Data from The New York Times, based on reports from state and local health agencies (<a href="https://github.com/nytimes/covid-19-data">NY Times Data Source</a>).</span>
-						<br />
-						<br />
-						<span class="text-light" id="hiDeptHealth">Data may be delayed in collection. For up-to-date information, please check <a href="https://hawaiicovid19.com/">Hawaii State Department of Health</a>.</span>
+						
+						<div id="hiDeptHealth">
+							<br />
+							<span class="text-light">Data may be delayed in collection. For up-to-date information, please check <a href="https://hawaiicovid19.com/">Hawaii State Department of Health</a>.</span>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -69,6 +111,6 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/countup@1.8.2/dist/countUp.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-		<script src="script-min.js"></script>
+		<script src="script.js"></script>
 	</body>
 </html>
