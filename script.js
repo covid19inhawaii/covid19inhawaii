@@ -53,14 +53,14 @@ document.addEventListener('DOMContentLoaded', function() {
 					{
 						label: 'Cases',
 						data: [],
-						borderColor: 'rgba(185,119,14,0.6)',
-						backgroundColor: 'rgba(185,119,14,0.1)'
+						borderColor: 'rgba(217, 136, 128,1)',
+						backgroundColor: 'rgba(217, 136, 128,0.2)'
 					},
 					{
 						label: 'Deaths',
 						data: [],						
-						borderColor: 'rgba(203,67,53,0.6)',
-						backgroundColor: 'rgba(203,67,53,0.1)'
+						borderColor: 'rgba(240, 178, 122,1)',
+						backgroundColor: 'rgba(240, 178, 122,0.2)'
 					}
 				]
 			}
@@ -275,26 +275,26 @@ document.addEventListener('DOMContentLoaded', function() {
 							{
 								label: 'Hawaii',
 								data: [],
-								borderColor: 'rgba(176,58,46,0.6)',
-								backgroundColor: 'rgba(176,58,46,0.1)'
+								borderColor: 'rgba(217, 136, 128,1)',
+								backgroundColor: 'rgba(217, 136, 128,0.2)'
 							},
 							{
 								label: 'Honolulu',
 								data: [],
-								borderColor: 'rgba(183,149,11,0.6)',
-								backgroundColor: 'rgba(183,149,11,0.1)'
+								borderColor: 'rgba(247, 220, 111,1)',
+								backgroundColor: 'rgba(247, 220, 111,0.2)'
 							},
 							{
 								label: 'Kauai',
 								data: [],
-								borderColor: 'rgba(187,143,206,0.6)',
-								backgroundColor: 'rgba(187,143,206,0.1)'
+								borderColor: 'rgba(187, 143, 206,1)',
+								backgroundColor: 'rgba(187, 143, 206,0.2)'
 							},
 							{
 								label: 'Maui',
 								data: [],
-								borderColor: 'rgba(30,132,73,0.6)',
-								backgroundColor: 'rgba(30,132,73,0.1)'
+								borderColor: 'rgba(125, 206, 160,1)',
+								backgroundColor: 'rgba(125, 206, 160,0.2)'
 							}
 						]
 					},
@@ -304,26 +304,26 @@ document.addEventListener('DOMContentLoaded', function() {
 							{
 								label: 'Hawaii',
 								data: [],
-								borderColor: 'rgba(176,58,46,0.6)',
-								backgroundColor: 'rgba(176,58,46,0.1)'
+								borderColor: 'rgba(217, 136, 128,1)',
+								backgroundColor: 'rgba(217, 136, 128,0.2)'
 							},
 							{
 								label: 'Honolulu',
 								data: [],
-								borderColor: 'rgba(183,149,11,0.6)',
-								backgroundColor: 'rgba(183,149,11,0.1)'
+								borderColor: 'rgba(247, 220, 111,1)',
+								backgroundColor: 'rgba(247, 220, 111,0.2)'
 							},
 							{
 								label: 'Kauai',
 								data: [],
-								borderColor: 'rgba(187,143,206,0.6)',
-								backgroundColor: 'rgba(187,143,206,0.1)'
+								borderColor: 'rgba(187, 143, 206,1)',
+								backgroundColor: 'rgba(187, 143, 206,0.2)'
 							},
 							{
 								label: 'Maui',
 								data: [],
-								borderColor: 'rgba(30,132,73,0.6)',
-								backgroundColor: 'rgba(30,132,73,0.1)'
+								borderColor: 'rgba(125, 206, 160,1)',
+								backgroundColor: 'rgba(125, 206, 160,0.2)'
 							}
 						]
 					}
