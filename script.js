@@ -464,166 +464,85 @@ document.addEventListener('DOMContentLoaded', function() {
 				var countyCounts = {
 					hawaii: {
 						cases: {
+							countDiv: 'countyCaseCountHawaiiChange',
+							changeDiv: 'countyCaseCountHawaii',
 							total: countyData.cases.datasets[0].data[countyData.cases.datasets[0].data.length - 1].y,
 							change: countyData.cases.datasets[0].data[countyData.cases.datasets[0].data.length - 1].y - countyData.cases.datasets[0].data[countyData.cases.datasets[0].data.length - 2].y
 						},
 						deaths: {
+							countDiv: 'countyDeathCountHawaiiChange',
+							changeDiv: 'countyDeathCountHawaii',
 							total: countyData.deaths.datasets[0].data[countyData.deaths.datasets[0].data.length - 1].y,
 							change: countyData.deaths.datasets[0].data[countyData.deaths.datasets[0].data.length - 1].y - countyData.deaths.datasets[0].data[countyData.deaths.datasets[0].data.length - 2].y
 						}
 					},
 					honolulu: {
 						cases: {
+							countDiv: 'countyCaseCountHonoluluChange',
+							changeDiv: 'countyCaseCountHonolulu',
 							total: countyData.cases.datasets[1].data[countyData.cases.datasets[1].data.length - 1].y,
 							change: countyData.cases.datasets[1].data[countyData.cases.datasets[1].data.length - 1].y - countyData.cases.datasets[1].data[countyData.cases.datasets[1].data.length - 2].y
 						},
 						deaths: {
+							countDiv: 'countyDeathCountHonoluluChange',
+							changeDiv: 'countyDeathCountHonolulu',
 							total: countyData.deaths.datasets[1].data[countyData.deaths.datasets[1].data.length - 1].y,
 							change: countyData.deaths.datasets[1].data[countyData.deaths.datasets[1].data.length - 1].y - countyData.deaths.datasets[1].data[countyData.deaths.datasets[1].data.length - 2].y
 						}
 					},
 					kauai: {
 						cases: {
+							countDiv: 'countyCaseCountKauaiChange',
+							changeDiv: 'countyCaseCountKauai',
 							total: countyData.cases.datasets[2].data[countyData.cases.datasets[2].data.length - 1].y,
 							change: countyData.cases.datasets[2].data[countyData.cases.datasets[2].data.length - 1].y - countyData.cases.datasets[2].data[countyData.cases.datasets[2].data.length - 2].y
 						},
 						deaths: {
+							countDiv: 'countyDeathCountKauaiChange',
+							changeDiv: 'countyDeathCountKauai',
 							total: countyData.deaths.datasets[2].data[countyData.deaths.datasets[2].data.length - 1].y,
 							change: countyData.deaths.datasets[2].data[countyData.deaths.datasets[2].data.length - 1].y - countyData.deaths.datasets[2].data[countyData.deaths.datasets[2].data.length - 2].y
 						}
 					},
 					maui: {
 						cases: {
+							countDiv: 'countyCaseCountMauiChange',
+							changeDiv: 'countyCaseCountMaui',
 							total: countyData.cases.datasets[3].data[countyData.cases.datasets[3].data.length - 1].y,
 							change: countyData.cases.datasets[3].data[countyData.cases.datasets[3].data.length - 1].y - countyData.cases.datasets[3].data[countyData.cases.datasets[3].data.length - 2].y
 						},
 						deaths: {
+							countDiv: 'countyDeathCountMauiChange',
+							changeDiv: 'countyDeathCountMaui',
 							total: countyData.deaths.datasets[3].data[countyData.deaths.datasets[3].data.length - 1].y,
 							change: countyData.deaths.datasets[3].data[countyData.deaths.datasets[3].data.length - 1].y - countyData.deaths.datasets[3].data[countyData.deaths.datasets[3].data.length - 2].y
 						}
 					}
-
 				}
 
-				var hawaiiCountyCaseCountChange = document.getElementById('countyCaseCountHawaiiChange');
-				hawaiiCountyCaseCountChange.innerHTML = '(' + (countyCounts.hawaii.cases.change > 0 ? '^' : '') + numberWithCommas(countyCounts.hawaii.cases.change) + ')';
+				function makeCountyCounts(type, county, countId, changeId) {
+					var changeDiv = document.getElementById(changeId);
+					changeDiv.innerHTML = '(' + (countyCounts[county][type].change > 0 ? '^' : '') + numberWithCommas(countyCounts[county][type].change) + ')';
 
-				if(countyCounts.hawaii.cases.change <= 0) {
-					hawaiiCountyCaseCountChange.classList.add('less');
-				}
-				else {
-					hawaiiCountyCaseCountChange.classList.add('more');
-				}
+					if(countyCounts[county][type].change <= 0) {
+						changeDiv.classList.add('less');
+					}
+					else {
+						changeDiv.classList.add('more');
+					}
 
-				var hawaiiCountyCaseCountup = new CountUp('countyCaseCountHawaii', 0, countyCounts.hawaii.cases.total);
-				hawaiiCountyCaseCountup.start(function() {
-					hawaiiCountyCaseCountChange.classList.add('show');
-				});
-
-				var honoluluCountyCaseCountChange = document.getElementById('countyCaseCountHonoluluChange');
-				honoluluCountyCaseCountChange.innerHTML = '(' + (countyCounts.honolulu.cases.change > 0 ? '^' : '') + numberWithCommas(countyCounts.honolulu.cases.change) + ')';
-
-				if(countyCounts.honolulu.cases.change <= 0) {
-					honoluluCountyCaseCountChange.classList.add('less');
-				}
-				else {
-					honoluluCountyCaseCountChange.classList.add('more');
+					var count = new CountUp(countId, 0, countyCounts[county][type].total);
+					count.start(function() {
+						changeDiv.classList.add('show');
+					});
 				}
 
-				var honoluluCountyCaseCountup = new CountUp('countyCaseCountHonolulu', 0, countyCounts.honolulu.cases.total);
-				honoluluCountyCaseCountup.start(function() {
-					honoluluCountyCaseCountChange.classList.add('show');
-				});
-
-				var kauaiCountyCaseCountChange = document.getElementById('countyCaseCountKauaiChange');
-				kauaiCountyCaseCountChange.innerHTML = '(' + (countyCounts.kauai.cases.change > 0 ? '^' : '') + numberWithCommas(countyCounts.kauai.cases.change) + ')';
-
-				if(countyCounts.kauai.cases.change <= 0) {
-					kauaiCountyCaseCountChange.classList.add('less');
+				for(var key in countyCounts) {
+				    if(countyCounts.hasOwnProperty(key)) {
+				        makeCountyCounts('cases', key, countyCounts[key].cases.changeDiv, countyCounts[key].cases.countDiv);
+				        makeCountyCounts('deaths', key, countyCounts[key].deaths.changeDiv, countyCounts[key].deaths.countDiv);
+				    }
 				}
-				else {
-					kauaiCountyCaseCountChange.classList.add('more');
-				}
-
-				var kauaiCountyCaseCountup = new CountUp('countyCaseCountKauai', 0, countyCounts.kauai.cases.total);
-				kauaiCountyCaseCountup.start(function() {
-					kauaiCountyCaseCountChange.classList.add('show');
-				});
-
-				var mauiCountyCaseCountChange = document.getElementById('countyCaseCountMauiChange');
-				mauiCountyCaseCountChange.innerHTML = '(' + (countyCounts.maui.cases.change > 0 ? '^' : '') + numberWithCommas(countyCounts.maui.cases.change) + ')';
-
-				if(countyCounts.maui.cases.change <= 0) {
-					mauiCountyCaseCountChange.classList.add('less');
-				}
-				else {
-					mauiCountyCaseCountChange.classList.add('more');
-				}
-
-				var mauiCountyCaseCountup = new CountUp('countyCaseCountMaui', 0, countyCounts.maui.cases.total);
-				mauiCountyCaseCountup.start(function() {
-					mauiCountyCaseCountChange.classList.add('show');
-				});
-
-				var hawaiiCountyDeathCountChange = document.getElementById('countyDeathCountHawaiiChange');
-				hawaiiCountyDeathCountChange.innerHTML = '(' + (countyCounts.hawaii.deaths.change > 0 ? '^' : '') + numberWithCommas(countyCounts.hawaii.deaths.change) + ')';
-
-				if(countyCounts.hawaii.deaths.change <= 0) {
-					hawaiiCountyDeathCountChange.classList.add('less');
-				}
-				else {
-					hawaiiCountyDeathCountChange.classList.add('more');
-				}
-
-				var hawaiiCountyDeathCountup = new CountUp('countyDeathCountHawaii', 0, countyCounts.hawaii.deaths.total);
-				hawaiiCountyDeathCountup.start(function() {
-					hawaiiCountyDeathCountChange.classList.add('show');
-				});
-
-				var honoluluCountyDeathCountChange = document.getElementById('countyDeathCountHonoluluChange');
-				honoluluCountyDeathCountChange.innerHTML = '(' + (countyCounts.honolulu.deaths.change > 0 ? '^' : '') + numberWithCommas(countyCounts.honolulu.deaths.change) + ')';
-
-				if(countyCounts.honolulu.deaths.change <= 0) {
-					honoluluCountyDeathCountChange.classList.add('less');
-				}
-				else {
-					honoluluCountyDeathCountChange.classList.add('more');
-				}
-
-				var honoluluCountyDeathCountup = new CountUp('countyDeathCountHonolulu', 0, countyCounts.honolulu.deaths.total);
-				honoluluCountyDeathCountup.start(function() {
-					honoluluCountyDeathCountChange.classList.add('show');
-				});
-
-				var kauaiCountyDeathCountChange = document.getElementById('countyDeathCountKauaiChange');
-				kauaiCountyDeathCountChange.innerHTML = '(' + (countyCounts.kauai.deaths.change > 0 ? '^' : '') + numberWithCommas(countyCounts.kauai.deaths.change) + ')';
-
-				if(countyCounts.kauai.deaths.change <= 0) {
-					kauaiCountyDeathCountChange.classList.add('less');
-				}
-				else {
-					kauaiCountyDeathCountChange.classList.add('more');
-				}
-
-				var kauaiCountyDeathCountup = new CountUp('countyDeathCountKauai', 0, countyCounts.kauai.deaths.total);
-				kauaiCountyDeathCountup.start(function() {
-					kauaiCountyDeathCountChange.classList.add('show');
-				});
-
-				var mauiCountyDeathCountChange = document.getElementById('countyDeathCountMauiChange');
-				mauiCountyDeathCountChange.innerHTML = '(' + (countyCounts.maui.deaths.change > 0 ? '^' : '') + numberWithCommas(countyCounts.maui.deaths.change) + ')';
-
-				if(countyCounts.maui.deaths.change <= 0) {
-					mauiCountyDeathCountChange.classList.add('less');
-				}
-				else {
-					mauiCountyDeathCountChange.classList.add('more');
-				}
-
-				var mauiCountyDeathCountup = new CountUp('countyDeathCountMaui', 0, countyCounts.maui.deaths.total);
-				mauiCountyDeathCountup.start(function() {
-					mauiCountyDeathCountChange.classList.add('show');
-				});
 			}
 		};
 
