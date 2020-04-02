@@ -50,14 +50,14 @@ document.addEventListener('DOMContentLoaded', function() {
 					{
 						label: 'Cases',
 						data: [],
-						borderColor: 'rgba(217, 136, 128,1)',
-						backgroundColor: 'rgba(217, 136, 128,0.2)'
+						borderColor: 'rgba(240, 178, 122,1)',
+						backgroundColor: 'rgba(240, 178, 122,0.2)'
 					},
 					{
 						label: 'Deaths',
-						data: [],						
-						borderColor: 'rgba(240, 178, 122,1)',
-						backgroundColor: 'rgba(240, 178, 122,0.2)'
+						data: [],
+						borderColor: 'rgba(217, 136, 128,1)',
+						backgroundColor: 'rgba(217, 136, 128,0.2)'				
 					}
 				]
 			}
