@@ -1,4 +1,26 @@
 document.addEventListener('DOMContentLoaded', function() {
+	// function for hawaii percent compared to US
+	var percent = {
+		us: {
+			cases: null,
+			deaths: null
+		},
+		state: {
+			cases: null,
+			deaths: null
+		}
+	}
+
+	percentFunction = function() {
+		if(percent.us.cases && percent.us.deaths && percent.state.cases && percent.state.deaths) {
+			var casePercent = percent.state.cases / percent.us.cases * 100;
+			var deathPercent = percent.state.deaths / percent.us.deaths * 100;
+		}
+
+		document.getElementById('casePercent').innerHTML = state + ' has ' + Math.round(casePercent * 100) / 100 + '% of total US cases.'
+		document.getElementById('deathPercent').innerHTML = state + ' has ' + Math.round(deathPercent * 100) / 100 + '% of total US deaths.'
+	}
+
 	// function to add commas to numbers
 	function numberWithCommas(x) {
 	    x = x.toString();
@@ -199,6 +221,11 @@ document.addEventListener('DOMContentLoaded', function() {
 				deathDaysElem.classList.add('show');
 				document.getElementById('deathRanking').classList.add('show');
 			});
+
+			percent.state.cases = hawaii.datasets[0].data[hawaii.datasets[0].data.length - 1].y;
+			percent.state.deaths = hawaii.datasets[1].data[hawaii.datasets[1].data.length - 1].y;
+
+			percentFunction();
 
 			// chart
 			var stateChartContainer = document.getElementById('state');
@@ -550,4 +577,145 @@ document.addEventListener('DOMContentLoaded', function() {
 		getCounties.send();
 	}
 	// ------------------------------------------------------------------------------------------------------------------------
+
+	// build US chart
+	// ------------------------------------------------------------------------------------------------------------------------
+	var getUs = new XMLHttpRequest();
+
+	getUs.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var usData = Papa.parse(this.responseText);
+
+			// chart data
+			var us = {
+				labels: [],
+				datasets: [
+					{
+						label: 'Cases',
+						data: [],
+						borderColor: 'rgba(240, 178, 122,1)',
+						backgroundColor: 'rgba(240, 178, 122,0.2)'
+					},
+					{
+						label: 'Deaths',
+						data: [],
+						borderColor: 'rgba(217, 136, 128,1)',
+						backgroundColor: 'rgba(217, 136, 128,0.2)'				
+					}
+				]
+			}
+
+			usData.data.splice(0,1);
+
+			usData.data.forEach(function(value) {
+				us.labels.push(value[0])
+
+				us.datasets[0].data.push({x: value[0], y: value[1]});    
+				us.datasets[1].data.push({x: value[0], y: value[2]});
+			});
+
+			var counts = {
+				cases: {
+					total: us.datasets[0].data[us.datasets[0].data.length - 1].y,
+					change: us.datasets[0].data[us.datasets[0].data.length - 1].y - us.datasets[0].data[us.datasets[0].data.length - 2].y,
+				},
+				deaths: {
+					total: us.datasets[1].data[us.datasets[1].data.length - 1].y,
+					change: us.datasets[1].data[us.datasets[1].data.length - 1].y - us.datasets[1].data[us.datasets[1].data.length - 2].y,
+				}
+			}
+
+			percent.us.cases = us.datasets[0].data[us.datasets[0].data.length - 1].y;
+			percent.us.deaths = us.datasets[1].data[us.datasets[1].data.length - 1].y;
+
+			percentFunction();
+
+			var usCaseCount = document.getElementById('usCaseCount');
+			var usCaseCountChange = document.getElementById('usCaseCountChange');
+			var usDeathCount = document.getElementById('usDeathCount');
+			var usDeathCountChange = document.getElementById('usDeathCountChange');
+
+			usCaseCount.innerHTML = counts.cases.total;
+			usCaseCountChange.innerHTML = '(' + (counts.cases.change > 0 ? '^' : '') + numberWithCommas(counts.cases.change) + ')';
+			usDeathCount.innerHTML = counts.deaths.total;
+			usDeathCountChange.innerHTML = '(' + (counts.deaths.change > 0 ? '^' : '') + numberWithCommas(counts.deaths.change) + ')';
+
+			if(counts.cases.change <= 0) {
+				usCaseCountChange.classList.add('less');
+			}
+			else {
+				usCaseCountChange.classList.add('more');
+			}
+
+			if(counts.deaths.change <= 0) {
+				usDeathCountChange.classList.add('less');
+			}
+			else {
+				usDeathCountChange.classList.add('more');
+			}
+
+			var usCasecount = new CountUp('usCaseCount', 0, counts.cases.total);
+			usCasecount.start(function() {
+				usCaseCountChange.classList.add('show');
+				document.getElementById('casePercent').classList.add('show');
+			});
+
+			var usDeathount = new CountUp('usDeathCount', 0, counts.deaths.total);
+			usDeathount.start(function() {
+				usDeathCountChange.classList.add('show');
+				document.getElementById('deathPercent').classList.add('show');
+			});
+
+			var usChartContainer = document.getElementById('usChart');
+
+			var usChart = new Chart(usChartContainer, {
+    			type: 'line',
+    			data: us,
+   				options: {
+   					title: {
+   						display: true,
+   						fontColor: '#FFF',
+   						fontSize: 20,
+	   					text: 'Cases and Deaths - United States'
+	   				},
+	   				legend: {
+	   					labels: {
+	   						fontColor: '#fff',
+	   						fontStyle: 'bold'
+	   					}
+	   				},
+	   				scales: {
+	   					yAxes: [
+	   						{
+	   							gridLines: {
+	   								color: 'rgba(255,255,255,0.3)'
+	   							},
+	   							ticks: {
+	   								color: 'rgba(255,255,255,0.3)',
+	   								fontColor: '#fff'
+	   							}
+	   						}
+	   					],
+	   					xAxes: [
+	   						{
+	   							gridLines: {
+	   								color: 'rgba(255,255,255,0.3)'
+	   							},
+	   							ticks: {
+	   								color: 'rgba(255,255,255,0.3)',
+	   								fontColor: '#fff'
+	   							}
+	   						}
+	   					]
+	   				}
+   				}
+			});
+		}
+
+		var usUpdated = usData.data[usData.data.length - 1][0];
+		document.getElementById('usUpdate').innerHTML = 'Updated ' + usUpdated;
+	};
+
+	getUs.open('GET', 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv', true);
+	getUs.send();
 });
