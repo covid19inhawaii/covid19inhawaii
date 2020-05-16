@@ -710,10 +710,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	   				}
    				}
 			});
+			
+			var usUpdated = usData.data[usData.data.length - 1][0];
+			document.getElementById('usUpdate').innerHTML = 'Updated ' + usUpdated;
 		}
-
-		var usUpdated = usData.data[usData.data.length - 1][0];
-		document.getElementById('usUpdate').innerHTML = 'Updated ' + usUpdated;
 	};
 
 	getUs.open('GET', 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv', true);
